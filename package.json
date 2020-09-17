@@ -1,0 +1,31 @@
+{
+  "name": "ecommerceapis",
+  "version": "1.0.0",
+  "description": "This node package is to develop APIs for an ecommerce application.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Achudan/ecommercescartch.git"
+  },
+  "keywords": [
+    "ecommerce"
+  ],
+  "author": "Achudan TS and Venkataraman S",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Achudan/ecommercescartch/issues"
+  },
+  "homepage": "https://github.com/Achudan/ecommercescartch#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
