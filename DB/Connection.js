@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//mongo URI
 const URI = "mongodb+srv://dbHulk:dbHulk@cluster0.zpedc.mongodb.net/<dbname>?retryWrites=true&w=majority";
 
 const connectDB = async()=>{
