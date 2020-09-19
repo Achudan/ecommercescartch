@@ -1,0 +1,39 @@
+
+
+sign up
+
+*name ******
+*email id *******
+*password *******
+*phone num
+
+login
+
+*email id
+*password
+
+home page
+
+products{
+
+watch:{
+	{
+		pname:
+		brand:
+		price:
+		
+	}
+}
+
+}
+
+orders{
+
+userid:{
+	{
+		// data to be taken from id
+		
+	}
+}
+
+}
