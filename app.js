@@ -1,15 +1,12 @@
 const express = require('express');
 const connectDB = require('./DB/Connection');
-
+const router = require('./Routes/routing')
 const app = express();
 const dataBase = connectDB();
 
 //below codes are to create middlewares
-
-const dataController = require('./Controller/User');
-
 app.use(express.json({ extended: false }));
-app.use('/', dataController);
+app.use('/', router);
 
 
 const port = process.env.port || 5000;
