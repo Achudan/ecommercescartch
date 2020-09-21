@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-let ecomm = {}
+var ecomm = {}
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -30,33 +30,21 @@ const categorySchema = new mongoose.Schema({
 ecomm.userModel = new mongoose.model('user', userSchema);
 ecomm.categoryModel = new mongoose.model('product', categorySchema);
 
-var nameOfCategory = "hello";
 ecomm.createProductCollection = async (categoryName) =>{
-  nameOfCategory = categoryName;
-  console.log(nameOfCategory)
-}
-
-ecomm.debugger = async () =>{
-  // nameOfCategory = categoryName;
-  console.log(nameOfCategory)
-}
-
-const productSchema = new mongoose.Schema({
-  productName:{
-    type: String,
-    require: true
+  const productSchema = new mongoose.Schema({
+    productName:{
+      type: String,
+      require: true
+    },
+    productPrice:{
+      type: Number,
+      require: true
+    },
+  
   },
-  productPrice:{
-    type: Number,
-    require: true
-  },
+  )  
+  ecomm.productModel = new mongoose.model(categoryName, productSchema, categoryName)
 
-},
-// { collection: nameOfCategory }
-)
-productSchema.set('collection', nameOfCategory);
-
-ecomm.productModel = new mongoose.model(nameOfCategory, productSchema, nameOfCategory)
-
+}
 
 module.exports = ecomm

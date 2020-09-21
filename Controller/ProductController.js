@@ -14,21 +14,20 @@ exports.addProduct = async (req, res) => {
         product.productName = name;
         product.productPrice = price;
 
-        await ecomm.createProductCollection(category)
-        await ecomm.debugger()
+        await ecomm.createProductCollection(category.toLowerCase().trim())
 
-        const defect = await ecomm.productModel.create(product);
-          res.status(200).json({
-            status: 'success',
-            data: {
-              defect,
-            },
-          });
+        // const defect = await ecomm.productModel.create(product);
+        //   res.status(200).json({
+        //     status: 'success',
+        //     data: {
+        //       defect,
+        //     },
+        //   });
 
-        // let productModel = new ecomm.productModel(product);
-        // // let productModel = [];
-        // await productModel.save();
-        // res.json(productModel);
+        let productModel = new ecomm.productModel(product);
+        // let productModel = [];
+        await productModel.save();
+        res.json(productModel);
     }
     catch (exception) {
 
