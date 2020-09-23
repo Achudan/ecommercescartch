@@ -1,13 +1,14 @@
 const ecomm = require('../Model/schema');
 
-exports.signup = async (req, res) => {
-  const { name, emailid, pass, phone } = req.body;
+exports.signup = async (req, res, next) => {
+  
+  const { name, emailid, password, phonenumber } = req.body;
   console.log(req.body);
   let user = {};
   user.name = name;
   user.emailid = emailid;
-  user.password = pass;
-  user.phonenumber = phone;
+  user.password = password;
+  user.phonenumber = phonenumber;
   
   // await ecomm.userModel.create(user)
   // console.log("db created for user")

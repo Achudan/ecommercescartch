@@ -5,7 +5,9 @@ const routing = express.Router();
 const userController = require('../Controller/User');
 const productController = require('../Controller/ProductController');
 
-routing.post('/setupDB', userController.signup);
+routing.post('/signup',(req, res, next)=>{
+    userController.signup(req, res, next)
+} );
 routing.post('/addProduct', productController.addProduct);
 
 module.exports = routing;
