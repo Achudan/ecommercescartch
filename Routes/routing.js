@@ -11,7 +11,7 @@ routing.post('/signup',(req, res, next)=>{
     userController.signup(req, res, next)
 } );
 
-routing.get('/signin',(req, res, next)=>{
+routing.post('/signin',(req, res, next)=>{
     userController.signin(req, res, next)
 } );
 

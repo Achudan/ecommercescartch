@@ -18,7 +18,7 @@ exports.signup = async (req, res, next) => {
 }
 exports.signin =async(req, res,next)=>{
   console.log(req.body)
-  ecomm.userModel.findOne({emailid:req.body.email},(err,obj)=>{
+  ecomm.userModel.findOne({emailid:req.body.emailid},(err,obj)=>{
     console.log(obj)
     if(obj==null)
       res.status(401).send("Please Register")
