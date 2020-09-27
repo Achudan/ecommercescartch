@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-
 const categorySchema = new mongoose.Schema({
     category:{
       type: String,
@@ -27,8 +26,27 @@ const categorySchema = new mongoose.Schema({
     },
 
 })
+
+const orderSchema = new mongoose.Schema({
+  userId:{
+    type: String,
+    require: true
+  },
+  products:[
+    { 
+      product: String,
+      quantity: Number
+     }
+  ],
+  totalCost:{
+    type: Number,
+    require: true
+  },
+
+})
 ecomm.userModel = new mongoose.model('user', userSchema);
 ecomm.categoryModel = new mongoose.model('product', categorySchema);
+ecomm.orderModel = new mongoose.model('order', orderSchema);
 
 ecomm.createProductCollection = async (categoryName) =>{
   const productSchema = new mongoose.Schema({
