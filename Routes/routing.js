@@ -14,6 +14,9 @@ routing.get('/signin',(req, res, next)=>{
     userController.signin(req, res, next)
 } );
 
+routing.get('/getOrders',(req, res, next)=>{
+    orderController.getOrders(req, res, next)
+} );
 routing.post('/addProduct', productController.addProduct);
 routing.post('/placeOrder', orderController.placeOrder);
 

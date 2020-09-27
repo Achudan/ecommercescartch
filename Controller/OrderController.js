@@ -27,3 +27,19 @@ exports.placeOrder = async (req, res) => {
 
     }
 }
+
+exports.getOrders= async(req,res)=>{
+    try{
+        const {userId}=req.body
+        ecomm.orderModel.findOne({userId:userId},(err,obj)=>{
+            if(obj==null)
+                res.send("No Orders Placed")
+            else{
+                res.send(obj)
+            }
+        })
+    }
+    catch(exception){
+
+    }
+}
