@@ -48,7 +48,7 @@ const orderSchema = new mongoose.Schema({
   }
 })
 ecomm.userModel = new mongoose.model('user', userSchema);
-ecomm.categoryModel = new mongoose.model('product', categorySchema);
+ecomm.categoryModel = new mongoose.model('categories', categorySchema, 'categories');
 ecomm.orderModel = new mongoose.model('order', orderSchema);
 
 ecomm.createProductCollection = async (categoryName) =>{
