@@ -51,7 +51,7 @@ ecomm.userModel = new mongoose.model('user', userSchema);
 ecomm.categoryModel = new mongoose.model('categories', categorySchema, 'categories');
 ecomm.orderModel = new mongoose.model('order', orderSchema);
 
-ecomm.createProductCollection = async (categoryName) =>{
+ecomm.createProductCollection = (categoryName) =>{
   const productSchema = new mongoose.Schema({
     productName:{
       type: String,
@@ -63,8 +63,14 @@ ecomm.createProductCollection = async (categoryName) =>{
     },
   
   },
-  )  
-  ecomm.productModel = new mongoose.model(categoryName, productSchema, categoryName)
+  ) 
+  try{
+    ecomm.productModel = new mongoose.model(categoryName) 
+  }
+  catch(error){
+    ecomm.productModel = new mongoose.model(categoryName, productSchema, categoryName)
+  }
+  
 
 }
 

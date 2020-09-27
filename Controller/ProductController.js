@@ -7,9 +7,6 @@ exports.addProduct = async (req, res) => {
         const { productName, productPrice , category} = req.body;
         console.log(req.body);
 
-        //category validation
-        // let isCategoryAvailable = productValidator.validateCategoryAvailability(category)
-
         let product = {};
         product.productName = productName;
         product.productPrice = productPrice;
@@ -23,24 +20,18 @@ exports.addProduct = async (req, res) => {
 
             let categoryModel = new ecomm.categoryModel(categoryObj);
             await categoryModel.save();
-            res.json(categoryModel);
+            // res.json(categoryModel);
         }
-        await ecomm.createProductCollection(categoryName)
+        ecomm.createProductCollection(categoryName)
 
-        // const defect = await ecomm.productModel.create(product);
-        //   res.status(200).json({
-        //     status: 'success',
-        //     data: {
-        //       defect,
-        //     },
-        //   });
 
         let productModel = new ecomm.productModel(product);
         await productModel.save();
-        res.json(productModel);
+        res.send(productModel);
     }
-    catch (exception) {
-
+    catch (error) {
+        console.log(error)
+        res.send(exception);
     }
 
 }
