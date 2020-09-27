@@ -23,6 +23,10 @@ routing.get('/getCategories',(req, res, next)=>{
     homeController.getCategories(req, res, next)
 } );
 
+routing.get('/filterProducts',(req, res, next)=>{
+    homeController.filterProducts(req, res, next)
+} );
+
 routing.post('/addProduct', productController.addProduct);
 routing.post('/placeOrder', orderController.placeOrder);
 
