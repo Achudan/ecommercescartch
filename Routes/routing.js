@@ -5,6 +5,7 @@ const routing = express.Router();
 const userController = require('../Controller/User');
 const productController = require('../Controller/ProductController');
 const orderController = require('../Controller/OrderController');
+const homeController = require('../Controller/HomeController');
 
 routing.post('/signup',(req, res, next)=>{
     userController.signup(req, res, next)
@@ -17,6 +18,11 @@ routing.get('/signin',(req, res, next)=>{
 routing.get('/getOrders',(req, res, next)=>{
     orderController.getOrders(req, res, next)
 } );
+
+routing.get('/getCategories',(req, res, next)=>{
+    homeController.getCategories(req, res, next)
+} );
+
 routing.post('/addProduct', productController.addProduct);
 routing.post('/placeOrder', orderController.placeOrder);
 
