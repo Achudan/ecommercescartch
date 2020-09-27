@@ -37,3 +37,10 @@ userid:{
 }
 
 }
+
+
+
+******************************ACHU***************TO***DO***LIST*****************
+***STUDY ABOUT REDUX TO SPEED THE OPERATION OF API CALL*************
+****CREATE CATEGORY SCHEMA AND STORE ALL CATEGORY NAME IF ITS NOT EXIST**********
+*****SEARCH AND DISPLAY ALL PRODUCTS UNDER CATEGORY IN CARDS********
