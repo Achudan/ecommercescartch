@@ -1,20 +1,31 @@
 const ecomm= require('../Model/schema');
-const productValidator = require('../Services/ProductValidators');
+const categoryValidator = require('../Services/CategoryValidators');
 
 exports.addProduct = async (req, res) => {
 
     try {
-        const { name, price , category} = req.body;
+        const { productName, productPrice , category} = req.body;
         console.log(req.body);
 
         //category validation
         // let isCategoryAvailable = productValidator.validateCategoryAvailability(category)
 
         let product = {};
-        product.productName = name;
-        product.productPrice = price;
+        product.productName = productName;
+        product.productPrice = productPrice;
 
-        await ecomm.createProductCollection(category.toLowerCase().trim())
+        let categoryName = category.toLowerCase().trim();
+        let isCategoryAvailable = await categoryValidator.validateCategoryAvailability(categoryName)
+        console.log(isCategoryAvailable)
+        if(!isCategoryAvailable){
+            let categoryObj = {};
+            categoryObj.category = categoryName;
+
+            let categoryModel = new ecomm.categoryModel(categoryObj);
+            await categoryModel.save();
+            res.json(categoryModel);
+        }
+        await ecomm.createProductCollection(categoryName)
 
         // const defect = await ecomm.productModel.create(product);
         //   res.status(200).json({
@@ -25,7 +36,6 @@ exports.addProduct = async (req, res) => {
         //   });
 
         let productModel = new ecomm.productModel(product);
-        // let productModel = [];
         await productModel.save();
         res.json(productModel);
     }
