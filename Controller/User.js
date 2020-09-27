@@ -21,11 +21,12 @@ exports.signin =async(req, res,next)=>{
   ecomm.userModel.findOne({emailid:req.body.email},(err,obj)=>{
     console.log(obj)
     if(obj==null)
-      res.send("Please Register")
+      res.status(401).send("Please Register")
     else
-      if(obj.password===req.body.password)
-        res.send("Login Success")
+      if(obj.password===req.body.password){
+        res.status(200).send(obj._id)
+      }
       else
-        res.send("Enter Correct Password")
+        res.status(401).send("Enter Correct Password")
   })
 } 

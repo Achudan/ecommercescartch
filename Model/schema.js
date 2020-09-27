@@ -42,7 +42,10 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     require: true
   },
-
+  date:{
+    type:Date,
+    required:true
+  }
 })
 ecomm.userModel = new mongoose.model('user', userSchema);
 ecomm.categoryModel = new mongoose.model('product', categorySchema);
