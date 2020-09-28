@@ -14,11 +14,19 @@ exports.getCategories = async (req, res) => {
 
 exports.filterProducts = async (req, res) => {
     let filteredData = []
-    let value = await ecomm.categoryModel.find({ category: { $regex: ".*" + req.body.filterData + ".*" } })
-    value.forEach((data)=>{
+    let categoryvalue = await ecomm.categoryModel.find({ category: { $regex: ".*" + req.body.filterData + ".*" } })
+    categoryvalue.forEach((data)=>{
         filteredData.push({
                     "fullName": data.category,
                     "presentIn": "Categories"
+                })
+    })
+
+    let productvalue = await ecomm.allProductModel.find({ productName: { $regex: ".*" + req.body.filterData + ".*" } })
+    productvalue.forEach((data)=>{
+        filteredData.push({
+                    "fullName": data.productName,
+                    "presentIn": data.category,
                 })
     })
     res.send(filteredData)

@@ -47,9 +47,27 @@ const orderSchema = new mongoose.Schema({
     required:true
   }
 })
+
+const allProductModel = new mongoose.Schema({
+  productId:{
+    type: String,
+    require: true
+  },
+  productName:{
+    type: String,
+    require: true
+  },
+  category:{
+    type: String,
+    require: true
+  },
+
+})
+
 ecomm.userModel = new mongoose.model('user', userSchema);
 ecomm.categoryModel = new mongoose.model('categories', categorySchema, 'categories');
 ecomm.orderModel = new mongoose.model('order', orderSchema);
+ecomm.allProductModel = new mongoose.model('allProducts', allProductModel, 'allProducts');
 
 ecomm.createProductCollection = (categoryName) =>{
   const productSchema = new mongoose.Schema({
@@ -61,6 +79,10 @@ ecomm.createProductCollection = (categoryName) =>{
       type: Number,
       require: true
     },
+    category:{
+      type: String,
+      require: true
+    }
   
   },
   ) 
