@@ -64,6 +64,7 @@ ecomm.createProductCollection = (categoryName) =>{
   
   },
   ) 
+  //try catch
   try{
     ecomm.productModel = new mongoose.model(categoryName) 
   }
