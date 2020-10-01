@@ -16,15 +16,17 @@ exports.signup = async (req, res, next) => {
   await userModel.save();
   res.json(userModel);
 }
-
-exports.addProduct = async (req, res) => {
-  const { name,category } = req.body;
-  console.log(req.body);
-  let product = {};
-  product.pname = name;
-  
-  let productModel = new ecomm.productModel(product);
-  // let productModel = [];
-  await productModel.save();
-  res.json(productModel);
-}
+exports.signin =async(req, res,next)=>{
+  console.log(req.body)
+  ecomm.userModel.findOne({emailid:req.body.emailid},(err,obj)=>{
+    console.log(obj)
+    if(obj==null)
+      res.status(401).send("Please Register")
+    else
+      if(obj.password===req.body.password){
+        res.status(200).send(obj._id)
+      }
+      else
+        res.status(401).send("Enter Correct Password")
+  })
+} 

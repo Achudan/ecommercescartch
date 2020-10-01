@@ -7,12 +7,10 @@ exports.addProduct = async (req, res) => {
         const { productName, productPrice , category} = req.body;
         console.log(req.body);
 
-        //category validation
-        // let isCategoryAvailable = productValidator.validateCategoryAvailability(category)
-
         let product = {};
         product.productName = productName;
         product.productPrice = productPrice;
+        product.category = category;
 
         let categoryName = category.toLowerCase().trim();
         let isCategoryAvailable = await categoryValidator.validateCategoryAvailability(categoryName)
@@ -23,24 +21,27 @@ exports.addProduct = async (req, res) => {
 
             let categoryModel = new ecomm.categoryModel(categoryObj);
             await categoryModel.save();
-            res.json(categoryModel);
+            // res.json(categoryModel);
         }
-        await ecomm.createProductCollection(categoryName)
+        ecomm.createProductCollection(categoryName)
 
-        // const defect = await ecomm.productModel.create(product);
-        //   res.status(200).json({
-        //     status: 'success',
-        //     data: {
-        //       defect,
-        //     },
-        //   });
 
         let productModel = new ecomm.productModel(product);
         await productModel.save();
-        res.json(productModel);
-    }
-    catch (exception) {
+        res.send(productModel);
+        // console.log(productModel)
 
+        let allProducts = {};
+        allProducts.productId = productModel._id;
+        allProducts.productName = productModel.productName;
+        allProducts.category = productModel.category;
+        let allProductsModel = new ecomm.allProductModel(allProducts);
+        await allProductsModel.save();
+        // res.send(allProductsModel);
+    }
+    catch (error) {
+        console.log(error)
+        res.send(exception);
     }
 
 }

@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-
 const categorySchema = new mongoose.Schema({
     category:{
       type: String,
@@ -27,11 +26,50 @@ const categorySchema = new mongoose.Schema({
     },
 
 })
+
+const orderSchema = new mongoose.Schema({
+  userId:{
+    type: String,
+    require: true
+  },
+  products:[
+    { 
+      product: String,
+      quantity: Number
+     }
+  ],
+  totalCost:{
+    type: Number,
+    require: true
+  },
+  date:{
+    type:Date,
+    required:true
+  }
+})
+
+const allProductModel = new mongoose.Schema({
+  productId:{
+    type: String,
+    require: true
+  },
+  productName:{
+    type: String,
+    require: true
+  },
+  category:{
+    type: String,
+    require: true
+  },
+
+})
+
 ecomm.userModel = new mongoose.model('user', userSchema);
 ecomm.categoryModel = new mongoose.model('categories', categorySchema, 'categories');
+ecomm.orderModel = new mongoose.model('order', orderSchema);
+ecomm.allProductModel = new mongoose.model('allProducts', allProductModel, 'allProducts');
 
-ecomm.createProductCollection = async (categoryName) =>{
-  console.log("inside prod creation")
+ecomm.createProductCollection = (categoryName) =>{
   const productSchema = new mongoose.Schema({
     productName:{
       type: String,
@@ -41,10 +79,21 @@ ecomm.createProductCollection = async (categoryName) =>{
       type: Number,
       require: true
     },
+    category:{
+      type: String,
+      require: true
+    }
   
   },
-  )  
-  ecomm.productModel = new mongoose.model(categoryName, productSchema, categoryName)
+  ) 
+  //try catch
+  try{
+    ecomm.productModel = new mongoose.model(categoryName) 
+  }
+  catch(error){
+    ecomm.productModel = new mongoose.model(categoryName, productSchema, categoryName)
+  }
+  
 
 }
 
