@@ -28,9 +28,10 @@ const categorySchema = new mongoose.Schema({
 
 })
 ecomm.userModel = new mongoose.model('user', userSchema);
-ecomm.categoryModel = new mongoose.model('product', categorySchema);
+ecomm.categoryModel = new mongoose.model('categories', categorySchema, 'categories');
 
 ecomm.createProductCollection = async (categoryName) =>{
+  console.log("inside prod creation")
   const productSchema = new mongoose.Schema({
     productName:{
       type: String,
